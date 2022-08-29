@@ -75,3 +75,14 @@ echo "<br> Result after fetch_all(MYSQLI_BOTH): <br>";
 $result = $connection->query($sql);
 $rows = $result->fetch_all(MYSQLI_ASSOC);
 echo var_dump($rows);
+echo "<br>";
+echo "<br>";
+echo "<br> Result after to fetch object: <br>";
+if ($result = $connection->query($sql)) {
+    while ($obj = $result->fetch_object()) {
+        echo "<br>";
+        var_dump($obj);
+        printf("%s (%s)\n", $obj->ID, $obj->task);
+    }
+    $result->free_result();
+}
